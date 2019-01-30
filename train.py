@@ -8,9 +8,9 @@ def main(arguments):
     parser = argparse.ArgumentParser(
         description=__doc__,
         formatter_class=argparse.RawDescriptionHelpFormatter)
-    parser.add_argument('-o', '--outfile', help='output file in which the Word2Vec Model will be saved (every model will be saved at the pretrained-directory model) - default name is word2vec.model',
+    parser.add_argument('-o', '--outfile', help='output file in which the Word2Vec Model will be saved (every model will be saved at the pretrained-models directory) - default name is word2vec.model',
                         default='word2vec.model')
-    parser.add_argument('-d', '--data', help='dataset on which the word2vec model will be trained on (must be a CSV with the label text)  - default is the police report datasetl',
+    parser.add_argument('-d', '--data', help='dataset on which the word2vec model will be trained on (must be a CSV with the label text and in the data directory)  - default is the police report datasetl',
                         default='data/police_reports.csv')
     parser.add_argument('-w', '--workers', help='how many workes will be used ',
                         default=1)
