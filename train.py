@@ -23,6 +23,11 @@ def main(arguments):
 
     args = parser.parse_args(arguments)
     print(args)
+    #args.epoch
+    #args.mincount
+    #args.outfile
+    #args.size
+    #args.workers
 
 
 if __name__ == '__main__':
