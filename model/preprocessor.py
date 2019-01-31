@@ -54,9 +54,10 @@ def tokenize_documents(document):
 
 
 def extract_window(documents, window_size=3):
-    '''
+    """
     deprecated
-    '''
+    """
+    print('deprecated')
     center_words = []
     context_words = []
     print("starting extracting windows")
@@ -71,9 +72,10 @@ def extract_window(documents, window_size=3):
 
 
 def document_to_onehot_encoding(tokenized, words):
-    '''
+    """
     deprecated
-    '''
+    """
+    print('deprecated')
     onehot_documents = []
     print("starting onehot encoding")
     onehot_map = {}
