@@ -1,5 +1,6 @@
 from indexdao import IndexDao
 from pymongo import MongoClient
+import os
 
 class Word2VecDao(IndexDao):
 
@@ -7,24 +8,36 @@ class Word2VecDao(IndexDao):
 
         '''
         Setup an instance of OrtsIndexDao.
-        Keys in config are: host, port, database, collection
+        Keys in config are: host, port, database, collection, model_name
         :param config: dict with keys
         '''
         c_copy =  dict(config)
         db = c_copy.pop('db')
-        ortsindex_collection = c_copy.pop('word2vec_collection')
-              
+        word2vec_collection = c_copy.pop('word2vec_collection')
+        
 
         self.client = MongoClient(**c_copy)
         self.db = self.client[db]
-        self.ortsindex_collection = self.db[ortsindex_collection]
+        self.word2vec_collection = self.db[word2vec_collection]
         
         
 
-    def updateIndex(self,  pagedetails):
-        # TODO
-	return None
+    def updateIndex(self,  model_name ):
+        cwd = os.getcwd()
+        model = Word2Vec.load(cwd + '/pretrained-models/' + model_name)
+        
+        for key in model.wv.vocab.keys():
+            self.word2vec_collection.update_one(
+                    {'word': key},
+                    {'$set': { "word_embedding" : model.wv.word_vec(key)}},
+                    upsert=True)
+        return None
 
     def getUrlfromKey(self, *searchKey, weight=0.0):
-        # TODO
-        return None
+        urls = []
+        for key in searchKey:
+            result = self.word2vec_collection.find({'word' : key.lower()})
+            for doc in result:
+                for url in doc["urls"]:
+                    urls.append(url)
+        return (urls, weight)

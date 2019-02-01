@@ -3,10 +3,10 @@ import os
 
 class SimilarWords:
     
-    #def __init__(self, config):
-        #self.model_name = config.pop('model_name')
-        #self.cwd = os.getcwd()
-        #self.model = Word2Vec.load(self.cwd + '/pretrained-models/' + self.model_name)
+    def __init__(self, config):
+        self.model_name = config.pop('model_name')
+        self.cwd = os.getcwd()
+        self.model = Word2Vec.load(self.cwd + '/pretrained-models/' + self.model_name)
     
     def _get_positive_similar_words(self, word, topn = 5):
         """
