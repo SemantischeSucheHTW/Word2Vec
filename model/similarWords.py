@@ -8,7 +8,8 @@ class SimilarWords:
         self.cwd = os.getcwd()
         self.model = Word2Vec.load(self.cwd + '/pretrained-models/' + self.model_name)
     
-    def get_positive_similar_words(self, words, topn = 5):
+    
+    def get_similar_words(self, words, topn = 5):
         result = []
         for word in words:
             if self.model.wv.vocab.get(word, 0) is not 0:
