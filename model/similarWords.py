@@ -15,10 +15,3 @@ class SimilarWords:
             if self.model.wv.vocab.get(word, 0) is not 0:
                 result.append(self.model.wv.most_similar(positive=[word], topn=topn))
         return result 
-    
-    def get_negative_similar_words(self, words, topn = 5):
-        result = []
-        for word in words:
-            if self.model.wv.vocab.get(word, 0) is not 0:
-                 result.append(self.model.wv.most_similar(negative=[word], topn=topn))
-        return result
