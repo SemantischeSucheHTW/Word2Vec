@@ -20,6 +20,3 @@ class IndexDao:
         with the given parse order.
         '''
         pass
-
-    def getUrlfromKey(self, *searchKey):
-        pass

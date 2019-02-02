@@ -1,4 +1,4 @@
-from indexdao import IndexDao
+from daos.indexdao import IndexDao
 from pymongo import MongoClient
 import os
 
@@ -19,8 +19,6 @@ class Word2VecDao(IndexDao):
         self.client = MongoClient(**c_copy)
         self.db = self.client[db]
         self.word2vec_collection = self.db[word2vec_collection]
-        
-        
 
     def updateIndex(self,  model_name ):
         cwd = os.getcwd()
