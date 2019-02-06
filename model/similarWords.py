@@ -18,7 +18,7 @@ class SimilarWords:
                 temp = self.model.wv.most_similar(positive=[word], topn=topn)
                 result_without_drop.append(temp)
                 # remove every word with a lower cosine similarity than drop
-                for word, similarity in temp:
-                    if similarity >= 0.4:
-                        result_with_drop.append((word, similarity))
+                temp_droped=[(y,x) for (y,x) in temp if (x>=drop)]
+                result_with_drop.append(temp_droped)                 
+               
         return result_with_drop, result_without_drop 

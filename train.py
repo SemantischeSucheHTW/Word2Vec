@@ -20,14 +20,14 @@ def main(arguments):
                         default='word2vec.model')
     parser.add_argument('-d', '--data', help='dataset on which the word2vec model will be trained on (must be a CSV with the label text and in the data directory)  - default is the police report datasetl',
                         default='police_reports.csv')
-    parser.add_argument('-wk', '--worker', help='how many workes will be used ',
+    parser.add_argument('-wk', '--worker', help='how many workes will be used ',type=int,
                         default=1)
-    parser.add_argument('-wi', '--window', help='maximum distance between the current and predicted word within a sentence', required=True)
-    parser.add_argument('-s', '--size', help='dimensionality of the word vectors.',
+    parser.add_argument('-wi', '--window', help='maximum distance between the current and predicted word within a sentence',type=int, required=True)
+    parser.add_argument('-s', '--size', help='dimensionality of the word vectors.',type=int,
                         default=100)
-    parser.add_argument('-m', '--mincount', help='how many words will be ignored with the total frequency lower than this number',
+    parser.add_argument('-m', '--mincount', help='how many words will be ignored with the total frequency lower than this number',type=int,
                         default=1)
-    parser.add_argument('-e', '--epoch', help='number of iterations over the corpus - how often our model will see our dataset',
+    parser.add_argument('-e', '--epoch', help='number of iterations over the corpus - how often our model will see our dataset',type=int,
                         default=100)
     args = parser.parse_args(arguments)
     print(args)
